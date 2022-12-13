@@ -68,6 +68,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
+  gem "rspec"
+  gem "rspec-rails"
 end
 
 group :test do
