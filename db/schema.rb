@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_14_121732) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_14_122430) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_121732) do
     t.string "name"
     t.bigint "wishlist_id", null: false
     t.boolean "is_organiser"
+    t.bigint "recipient_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["recipient_id"], name: "index_users_on_recipient_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["wishlist_id"], name: "index_users_on_wishlist_id"
   end
@@ -43,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_14_121732) do
     t.index ["item_id"], name: "index_wishlists_on_item_id"
   end
 
+  add_foreign_key "users", "users", column: "recipient_id"
   add_foreign_key "users", "wishlists"
   add_foreign_key "wishlists", "items"
 end

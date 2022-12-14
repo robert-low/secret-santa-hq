@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :wishlist
+  has_one :recipient, class_name: "User",
+  foreign_key: "recipient_id"
 end
