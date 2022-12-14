@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :wishlist
   has_one :recipient, class_name: "User", foreign_key: "recipient_id"
+  has_one :wishlist
 
   validates :wishlist, presence: true, if: :recipient?
 
