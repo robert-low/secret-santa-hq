@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_one :wishlist
   has_one :recipient, class_name: "User",
   foreign_key: "recipient_id"
+
+  validates :wishlist, presence: true, if: :recipient?
+
+  def recipient?
+    is_organiser == false
+  end
 end
